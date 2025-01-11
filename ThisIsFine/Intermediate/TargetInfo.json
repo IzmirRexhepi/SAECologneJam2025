@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "ThisIsFine",
+			"Path": "..\\Source\\ThisIsFine.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "ThisIsFineEditor",
+			"Path": "..\\Source\\ThisIsFineEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

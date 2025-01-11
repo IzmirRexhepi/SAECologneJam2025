@@ -10,6 +10,8 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "LocalCustomPlayerState.h"
+#include "GameFramework/PlayerController.h"
 
 // Sets default values
 ALocalMultiplayerCharacter::ALocalMultiplayerCharacter()
@@ -56,6 +58,18 @@ void ALocalMultiplayerCharacter::BeginPlay()
 		}
 	}
 
+	APlayerController* PlayerController = GetController();
+    if (PlayerController)
+    {
+        ALocalCustomPlayerState* CustomlayerState = Cast<ALocalCustomPlayerState>(PlayerController->GetPlayerState());
+        if (CustomlayerState)
+        {
+            // Now you can access CustomlayerState variables, such as ItemCount or SlotsLeft
+			//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Green, TEXT("Punch"));
+            UE_LOG(LogTemp, Log, TEXT("ItemCount: %d, SlotsLeft: %d"), CustomlayerState->PlayerScores, CustomlayerState->SlotsLeft);
+        }
+    }
+
 }
 
 // Called every frame
@@ -79,7 +93,10 @@ void ALocalMultiplayerCharacter::SetupPlayerInputComponent(UInputComponent* Play
 		//Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ALocalMultiplayerCharacter::Look);
 
-		//Looking
+		//Interacting
+		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Started, this, &ALocalMultiplayerCharacter::Interact);
+
+		//Punching
 		EnhancedInputComponent->BindAction(PunchAction, ETriggerEvent::Started, this, &ALocalMultiplayerCharacter::Punch);
 
 	}
@@ -122,12 +139,20 @@ void ALocalMultiplayerCharacter::Look(const FInputActionValue& Value)
 	}
 }
 
-void ALocalMultiplayerCharacter::Punch(const FInputActionValue& Value)
+void ALocalMultiplayerCharacter::Interact(const FInputActionValue& Value)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Green, TEXT("Not found"));
 	if (Controller != nullptr)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Green, TEXT("Not found"));
+		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Green, TEXT("Interact"));
+
+	}
+}
+
+void ALocalMultiplayerCharacter::Punch(const FInputActionValue& Value)
+{
+	if (Controller != nullptr)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Green, TEXT("Punch"));
 
 	}
 }

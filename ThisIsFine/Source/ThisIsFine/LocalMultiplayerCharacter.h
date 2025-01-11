@@ -32,8 +32,13 @@ class THISISFINE_API ALocalMultiplayerCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* LookAction;
 
+	/** Interact Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowPrivateAccess = "true"))
 	UInputAction* PunchAction;
+
+	/** Punch Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowPrivateAccess = "true"))
+	UInputAction* InteractAction;
 
 
 public:
@@ -51,9 +56,11 @@ public:
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
 
+	/** Called for interacting input */
+	void Interact(const FInputActionValue& Value);
+
+	/** Called for punching input */
 	void Punch(const FInputActionValue& Value);
-
-
 
 protected:
 

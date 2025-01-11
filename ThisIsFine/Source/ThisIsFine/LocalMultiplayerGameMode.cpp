@@ -4,6 +4,7 @@
 #include "LocalMultiplayerGameMode.h"
 #include "LocalMultiplayerCharacter.h"
 #include "UObject/ConstructorHelpers.h"
+#include "LocalCustomPlayerState.h"
 
 ALocalMultiplayerGameMode::ALocalMultiplayerGameMode()
 {
@@ -13,4 +14,6 @@ ALocalMultiplayerGameMode::ALocalMultiplayerGameMode()
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}*/
+
+	PlayerStateClass = ALocalCustomPlayerState::StaticClass();
 }
