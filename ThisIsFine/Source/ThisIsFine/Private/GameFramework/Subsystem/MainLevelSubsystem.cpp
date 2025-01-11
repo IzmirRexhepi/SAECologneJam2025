@@ -27,6 +27,9 @@ void UMainLevelSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 
 	CollectableObjects.Empty();
 	CollectableObjects.Reserve(13);
+	CollectableObjectsToCollect.Empty();
+	CollectableObjectsToCollect.Reserve(5);
+	CollectableObjectsIndexes.Empty();
 }
 
 void UMainLevelSubsystem::Deinitialize()
@@ -43,8 +46,6 @@ void UMainLevelSubsystem::RegisterCollectableObject(ACollectableObject* Collecta
 void UMainLevelSubsystem::StartLevel(const int NumberOfCollectableObjects)
 {
 	// Get Random Number of Collectable Objects
-	TArray<int> CollectableObjectsIndexes;
-
 	int SaveExit = 0;
 
 	do
@@ -70,6 +71,15 @@ void UMainLevelSubsystem::StartLevel(const int NumberOfCollectableObjects)
 	}
 	while (true);
 
-	for (const auto CollectableObjectsIndex : CollectableObjectsIndexes)
+	for (const auto& CollectableObjectsIndex : CollectableObjectsIndexes)
+	{
 		CollectableObjects[CollectableObjectsIndex]->SetCollectableState(true);
+		CollectableObjectsToCollect.Add(CollectableObjects[CollectableObjectsIndex]);
+	}
+
+	OnStartLevelFinished.Broadcast();
+}
+
+void UMainLevelSubsystem::FunctionToAvoidLambda()
+{
 }

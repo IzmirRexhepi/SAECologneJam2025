@@ -10,6 +10,9 @@ class ACollectableObject;
 /**
  *
  */
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnStartLevelFinished);
+
 UCLASS()
 class THISISFINE_API UMainLevelSubsystem : public UWorldSubsystem
 {
@@ -24,7 +27,14 @@ public:
 	void StartLevel(int NumberOfCollectableObjects);
 
 	FORCEINLINE TArray<ACollectableObject*> GetCollectableObjects() const { return CollectableObjects; }
+	FORCEINLINE TArray<ACollectableObject*> GetCollectableObjectsToCollect() const { return CollectableObjectsToCollect; }
+
+	FOnStartLevelFinished OnStartLevelFinished;
 
 private:
 	TArray<ACollectableObject*> CollectableObjects = {};
+	TArray<ACollectableObject*> CollectableObjectsToCollect = {};
+	TArray<int> CollectableObjectsIndexes = {};
+
+	void FunctionToAvoidLambda();
 };

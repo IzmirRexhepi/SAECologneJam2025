@@ -53,6 +53,7 @@ public:
 
 	FORCEINLINE auto GetCollectableImage() const -> UTexture2D* { return CollectInfo.CollectableImage; }
 	FORCEINLINE auto GetCollectableObjectName() const -> FString { return CollectInfo.CollectableObjectName; }
+	FORCEINLINE auto GetNumberOfHandsNeeded() const -> int { return CollectInfo.NumberOfHandsNeeded; }
 
 protected:
 	// Called when the game starts or when spawned

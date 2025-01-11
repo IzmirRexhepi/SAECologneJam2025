@@ -21,7 +21,7 @@ public:
 
 private:
 
-	UPROPERTY(EditAnywhere, Category = "Collectable Object List", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(meta = (BindWidget))
 	UVerticalBox* CollectableObjectsList;
 
 	UPROPERTY(EditAnywhere, Category = "Collectable Object List", meta = (AllowPrivateAccess = "true"))

@@ -21,7 +21,6 @@ ACollectableObject::ACollectableObject()
 
 	this->BoxCollider = CreateDefaultSubobject<UBoxComponent>(TEXT("Box Collider"));
 	this->BoxCollider->SetupAttachment(this->Root);
-
 }
 
 ACollectableObject* ACollectableObject::StartInteraction(const int PlayersRemainingHands)

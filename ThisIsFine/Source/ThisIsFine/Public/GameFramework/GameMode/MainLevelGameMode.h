@@ -23,7 +23,11 @@ protected:
 	UFUNCTION(BlueprintCallable, meta = (BlueprintProtected = "true"))
 	void DelayedBeginPlay();
 
-private:
+protected:
+	UPROPERTY(EditAnywhere, Category = "Main Level Game Mode", meta = (AllowPrivateAccess = "true"))
 	UCollectableObjectList* CollectableObjectList;
+
+	UFUNCTION(BlueprintCallable, meta = (BlueprintProtected = "true"))
+	FORCEINLINE void SetCollectableObjectList(UCollectableObjectList* CollectableObjectListToSet) { CollectableObjectList = CollectableObjectListToSet; }
 
 };

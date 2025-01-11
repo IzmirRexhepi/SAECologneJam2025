@@ -12,7 +12,7 @@ void UCollectableObjectList::OwnInitialize()
 	const UMainLevelSubsystem* MainLevelSubsystem = GetWorld()->GetSubsystem<UMainLevelSubsystem>();
 	if (!MainLevelSubsystem) return;
 
-	auto CollectableObjectList = MainLevelSubsystem->GetCollectableObjects();
+	auto CollectableObjectList = MainLevelSubsystem->GetCollectableObjectsToCollect();
 
 	// print the number of collectable objects
 	if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Number of Collectable Objects: %d"), CollectableObjectList.Num()));

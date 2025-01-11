@@ -13,16 +13,17 @@ void AMainLevelGameMode::BeginPlay()
 	UMainLevelSubsystem* MainLevelSubsystem = GetWorld()->GetSubsystem<UMainLevelSubsystem>();
 
 	if (MainLevelSubsystem)
+	{
+		MainLevelSubsystem->OnStartLevelFinished.AddDynamic(this, &AMainLevelGameMode::DelayedBeginPlay);
 		MainLevelSubsystem->StartLevel(NumberOfCollectableObjects);
+
+	}
 }
 
 void AMainLevelGameMode::DelayedBeginPlay()
 {
 	if (CollectableObjectList)
 	{
-
-		if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Delayed Begin Play"));
-
 		CollectableObjectList->OwnInitialize();
 	}
 }
