@@ -7,8 +7,8 @@
         "Includes": [
             "f:\\devlab\\gamejam\\saecolognejam2025\\thisisfine\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\thisisfine\\definitions.thisisfine.h",
             "f:\\devlab\\gamejam\\saecolognejam2025\\thisisfine\\source\\thisisfine\\localcustomplayerstate.h",
-            "c:\\program files\\epic games\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\gameframework\\playerstate.h",
-            "c:\\program files\\epic games\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\playerstate.generated.h",
+            "d:\\epicgames\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\gameframework\\playerstate.h",
+            "d:\\epicgames\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\playerstate.generated.h",
             "f:\\devlab\\gamejam\\saecolognejam2025\\thisisfine\\intermediate\\build\\win64\\unrealeditor\\inc\\thisisfine\\uht\\localcustomplayerstate.generated.h"
         ],
         "ImportedModules": [],

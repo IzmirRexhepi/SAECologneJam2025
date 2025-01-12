@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\ThisIsFine.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\ThisIsFine.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\ThisIsFineEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\.vsconfig" />
+    <None Include="..\..\.ignore" />
+    <None Include="..\..\ThisIsFine.code-workspace" />
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\ThisIsFine">
+      <UniqueIdentifier>{29F159F4-FDE4-3FBA-9DA4-AC501066663A}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\ThisIsFine\ThisIsFine.h">
+      <Filter>Source\ThisIsFine</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\ThisIsFine\ThisIsFine.cpp">
+      <Filter>Source\ThisIsFine</Filter>
+    </ClCompile>
+    <None Include="..\..\Source\ThisIsFine\ThisIsFine.Build.cs">
+      <Filter>Source\ThisIsFine</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\ThisIsFine\LocalCustomPlayerState.cpp">
+      <Filter>Source\ThisIsFine</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ThisIsFine\LocalCustomPlayerState.h">
+      <Filter>Source\ThisIsFine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ThisIsFine\LocalMultiplayerGameMode.h">
+      <Filter>Source\ThisIsFine</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\ThisIsFine\LocalMultiplayerGameMode.cpp">
+      <Filter>Source\ThisIsFine</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ThisIsFine\LocalMultiplayerCharacter.h">
+      <Filter>Source\ThisIsFine</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\ThisIsFine\LocalMultiplayerCharacter.cpp">
+      <Filter>Source\ThisIsFine</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

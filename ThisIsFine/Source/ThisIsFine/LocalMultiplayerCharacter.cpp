@@ -10,8 +10,8 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
-#include "LocalCustomPlayerState.h"
-#include "GameFramework/PlayerController.h"
+#include "LocalMultiplayerGameMode.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ALocalMultiplayerCharacter::ALocalMultiplayerCharacter()
@@ -42,6 +42,8 @@ ALocalMultiplayerCharacter::ALocalMultiplayerCharacter()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
+	SlotAmount = 2;
+	isDead = false;
 }
 
 // Called when the game starts or when spawned
@@ -58,18 +60,11 @@ void ALocalMultiplayerCharacter::BeginPlay()
 		}
 	}
 
-	APlayerController* PlayerController = GetController();
-    if (PlayerController)
-    {
-        ALocalCustomPlayerState* CustomlayerState = Cast<ALocalCustomPlayerState>(PlayerController->GetPlayerState());
-        if (CustomlayerState)
-        {
-            // Now you can access CustomlayerState variables, such as ItemCount or SlotsLeft
-			//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Green, TEXT("Punch"));
-            UE_LOG(LogTemp, Log, TEXT("ItemCount: %d, SlotsLeft: %d"), CustomlayerState->PlayerScores, CustomlayerState->SlotsLeft);
-        }
-    }
-
+	AGameModeBase* GameMode = UGameplayStatics::GetGameMode(GetWorld());
+	ALocalMultiplayerGameMode* CustomGameMode = Cast< ALocalMultiplayerGameMode>(GameMode);
+	if (CustomGameMode) {
+		BindCharacterGameOver();
+	}
 }
 
 // Called every frame
@@ -143,7 +138,8 @@ void ALocalMultiplayerCharacter::Interact(const FInputActionValue& Value)
 {
 	if (Controller != nullptr)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Green, TEXT("Interact"));
+
+		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Green, FString::Printf(TEXT("Slotamount %d"), SlotAmount));
 
 	}
 }
@@ -153,7 +149,45 @@ void ALocalMultiplayerCharacter::Punch(const FInputActionValue& Value)
 	if (Controller != nullptr)
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Green, TEXT("Punch"));
+		Die(GetController<APlayerController>());
+	}
+}
 
+
+void ALocalMultiplayerCharacter::Die(APlayerController* PlayerController) {
+	isDead = true;
+
+	//Enable ragdoll physics.
+	GetMesh()->SetCollisionProfileName(TEXT("Ragdoll"));
+	GetMesh()->SetSimulatePhysics(true);
+
+	//Block player input & delete the capsule component
+	PlayerController->DisableInput(PlayerController);
+	GetCapsuleComponent()->DestroyComponent();
+	CameraBoom->bDoCollisionTest = false;
+
+	// Log for debugging
+	UE_LOG(LogTemp, Warning, TEXT("Character has died"));
+
+	// Broadcast the OnCharacterDeath event
+	OnPlayerDeath.Broadcast(PlayerController);
+}
+
+void ALocalMultiplayerCharacter::HandleGameOver() {
+	UE_LOG(LogTemp, Error, TEXT("Handle Game Over"));
+	APlayerController* PlayerController = Cast<APlayerController>(Controller);
+	if (PlayerController)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("%s detected game is over"), *PlayerController->GetName());
+	}
+}
+
+void ALocalMultiplayerCharacter::BindCharacterGameOver() {
+
+	AGameModeBase* GameMode = UGameplayStatics::GetGameMode(GetWorld());
+	ALocalMultiplayerGameMode* CustomGameMode = Cast<ALocalMultiplayerGameMode>(GameMode);
+	if (CustomGameMode) {
+		CustomGameMode->OnGameOver.AddDynamic(this, &ALocalMultiplayerCharacter::HandleGameOver);
 	}
 }
 

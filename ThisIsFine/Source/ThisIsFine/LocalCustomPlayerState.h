@@ -17,7 +17,8 @@ class THISISFINE_API ALocalCustomPlayerState : public APlayerState
 public:
 	// Array to store player-specific data (e.g., player scores, items, etc.)
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Player State")
-    TArray<int32> PlayerScores;
+    //TArray<int32> PlayerScores;
+	int32 PlayerScores;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Player Stats")
     int32 SlotsLeft;

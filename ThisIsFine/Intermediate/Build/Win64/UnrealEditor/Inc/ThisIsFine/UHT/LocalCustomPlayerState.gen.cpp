@@ -40,11 +40,11 @@ struct Z_Construct_UClass_ALocalCustomPlayerState_Statics
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlayerScores_MetaData[] = {
 		{ "Category", "Player State" },
 #if !UE_BUILD_SHIPPING
-		{ "Comment", "// Array to store player-specific data (e.g., player scores, items, etc.)\n" },
+		{ "Comment", "// Array to store player-specific data (e.g., player scores, items, etc.)\n//TArray<int32> PlayerScores;\n" },
 #endif
 		{ "ModuleRelativePath", "LocalCustomPlayerState.h" },
 #if !UE_BUILD_SHIPPING
-		{ "ToolTip", "Array to store player-specific data (e.g., player scores, items, etc.)" },
+		{ "ToolTip", "Array to store player-specific data (e.g., player scores, items, etc.)\nTArray<int32> PlayerScores;" },
 #endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SlotsLeft_MetaData[] = {
@@ -52,8 +52,7 @@ struct Z_Construct_UClass_ALocalCustomPlayerState_Statics
 		{ "ModuleRelativePath", "LocalCustomPlayerState.h" },
 	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FIntPropertyParams NewProp_PlayerScores_Inner;
-	static const UECodeGen_Private::FArrayPropertyParams NewProp_PlayerScores;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_PlayerScores;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_SlotsLeft;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
@@ -62,11 +61,9 @@ struct Z_Construct_UClass_ALocalCustomPlayerState_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_ALocalCustomPlayerState_Statics::NewProp_PlayerScores_Inner = { "PlayerScores", nullptr, (EPropertyFlags)0x0000000000020000, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_ALocalCustomPlayerState_Statics::NewProp_PlayerScores = { "PlayerScores", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ALocalCustomPlayerState, PlayerScores), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerScores_MetaData), NewProp_PlayerScores_MetaData) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_ALocalCustomPlayerState_Statics::NewProp_PlayerScores = { "PlayerScores", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ALocalCustomPlayerState, PlayerScores), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerScores_MetaData), NewProp_PlayerScores_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_ALocalCustomPlayerState_Statics::NewProp_SlotsLeft = { "SlotsLeft", nullptr, (EPropertyFlags)0x0010000000000004, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ALocalCustomPlayerState, SlotsLeft), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SlotsLeft_MetaData), NewProp_SlotsLeft_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ALocalCustomPlayerState_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALocalCustomPlayerState_Statics::NewProp_PlayerScores_Inner,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALocalCustomPlayerState_Statics::NewProp_PlayerScores,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ALocalCustomPlayerState_Statics::NewProp_SlotsLeft,
 };
@@ -112,10 +109,10 @@ ALocalCustomPlayerState::~ALocalCustomPlayerState() {}
 struct Z_CompiledInDeferFile_FID_ThisIsFine_Source_ThisIsFine_LocalCustomPlayerState_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ALocalCustomPlayerState, ALocalCustomPlayerState::StaticClass, TEXT("ALocalCustomPlayerState"), &Z_Registration_Info_UClass_ALocalCustomPlayerState, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ALocalCustomPlayerState), 2282632004U) },
+		{ Z_Construct_UClass_ALocalCustomPlayerState, ALocalCustomPlayerState::StaticClass, TEXT("ALocalCustomPlayerState"), &Z_Registration_Info_UClass_ALocalCustomPlayerState, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ALocalCustomPlayerState), 1788312992U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ThisIsFine_Source_ThisIsFine_LocalCustomPlayerState_h_3438767750(TEXT("/Script/ThisIsFine"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ThisIsFine_Source_ThisIsFine_LocalCustomPlayerState_h_1284826120(TEXT("/Script/ThisIsFine"),
 	Z_CompiledInDeferFile_FID_ThisIsFine_Source_ThisIsFine_LocalCustomPlayerState_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ThisIsFine_Source_ThisIsFine_LocalCustomPlayerState_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

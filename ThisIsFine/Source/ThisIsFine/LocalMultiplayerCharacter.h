@@ -7,6 +7,8 @@
 #include "InputActionValue.h"
 #include "LocalMultiplayerCharacter.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnCharacterDeath, APlayerController*, PlayerController);
+
 UCLASS()
 class THISISFINE_API ALocalMultiplayerCharacter : public ACharacter
 {
@@ -61,6 +63,28 @@ public:
 
 	/** Called for punching input */
 	void Punch(const FInputActionValue& Value);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	bool isDead;
+
+	// Inventory
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory")
+	TArray<AActor*> ItemSlots;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	int32 SlotAmount;
+
+	// Delegate to broadcast death
+	UPROPERTY(BlueprintAssignable, Category = "Events")
+	FOnCharacterDeath OnPlayerDeath;
+
+	// Simulate character death
+	void Die(APlayerController* PlayerController);
+
+	// Called to bind to the character's death event
+	void BindCharacterGameOver();
+
+	void HandleGameOver();
 
 protected:
 
